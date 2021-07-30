@@ -1,16 +1,18 @@
 .navbar-brand img {
-    width: 200px;
+    width: 190px;
+    padding: 3px 0 0 8px;
 }
 
 .navbar {
     background-color: rgb(243, 233, 241);
     display: flex;
     justify-content: space-between;
+    border-radius: 20px;
 }
 
 .panier {
-    padding-top: 40px;
-    padding-right: 10px;
+    padding-top: 35px;
+    padding-right: 25px;
 }
 
 .panier a {
