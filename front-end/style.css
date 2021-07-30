@@ -10,15 +10,22 @@
     border-radius: 20px;
 }
 
-.panier {
+.internal-link {
     padding-top: 35px;
-    padding-right: 25px;
 }
 
-.panier a {
+.internal-link a, .internal-link-footer a {
     text-decoration: none;
-    font-size: 21px;
+    font-size: 20px;
     color: black;
     font-weight: 400;
 }
 
+.internal-link, .internal-link-footer {
+    padding-right: 25px;
+}
+
+.internal-link-footer {
+    padding-top: 8px;
+    list-style-type: none;
+}
