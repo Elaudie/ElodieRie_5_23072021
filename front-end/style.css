@@ -1,3 +1,5 @@
+/* Header et footer */
+
 .navbar-brand img {
     width: 190px;
     padding: 3px 0 0 8px;
@@ -28,4 +30,34 @@
 .internal-link-footer {
     padding-top: 8px;
     list-style-type: none;
+}
+
+/* Bloc 1 -- Présentation */
+
+.jumbotron {
+    position: relative;
+}
+.jumbotron img {
+    width: 100%;
+    height: 100%;
+}
+.jumbotron > .text-jumbotron {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0.8;
+    text-align: center;
+    text-shadow: 1px 1px 2px #24111F;
+}
+.text-jumbotron h1 {
+    color: #F3E9F2;
+    font-size: 2.7em;
+    font-weight: 600;
+}
+.text-jumbotron h2 {
+    color: rgb(243, 233, 241);
+    font-size: 1.2em;
+    font-weight: 600;
 }
