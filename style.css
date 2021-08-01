@@ -130,4 +130,9 @@ p {
         margin-top: 15px;
     }
 
+    .Image {
+        height: 400px;
+        width: 100%;
+    }
+
 }
