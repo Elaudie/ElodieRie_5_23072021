@@ -81,3 +81,24 @@
 .mrg {
     margin-top: 15px;
 }
+
+#productLink {
+    text-decoration: none;
+    color: black;
+}
+
+.mb-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+p {
+    margin: 0;
+    text-align: justify;
+}
+
+.Price {
+    border: 7px whitesmoke solid;
+    background-color: white;
+}
