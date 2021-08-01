@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 /* Header et footer */
 
 .navbar-brand img {
@@ -5,7 +9,7 @@
     padding: 3px 0 0 8px;
 }
 
-.navbar {
+.navbar, .Card {
     background-color: rgb(243, 233, 241);
     display: flex;
     justify-content: space-between;
@@ -41,15 +45,6 @@
     width: 100%;
     border-radius: 20px;
 }
-.jumbotron > .text-jumbotron {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    text-align: center;
-    text-shadow: 1px 1px 2px #24111F;
-}
 .text-jumbotron h1 {
     color: #F3E9F2;
     font-size: 2.7em;
@@ -59,4 +54,30 @@
     color: rgb(243, 233, 241);
     font-size: 1.5em;
     font-weight: 600;
+}
+.jumbotron > .text-jumbotron {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+    text-shadow: 1px 1px 2px #24111F;
+}
+
+
+/* Bloc 2 -- Produits */
+
+.productCard {
+    padding: 0;
+}
+
+.Image {
+    height: 45%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.mrg {
+    margin-top: 15px;
 }
