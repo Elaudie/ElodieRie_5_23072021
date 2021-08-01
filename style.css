@@ -103,3 +103,31 @@ p {
     border: 7px whitesmoke solid;
     background-color: white;
 }
+
+/* breakpoint */
+@media only screen and (min-width: 992px){
+
+    .container-page {
+        max-width: 1250px;
+	    margin: auto;
+    }
+
+    .productCard {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .mrg {
+        margin: 0;
+    }
+
+    .Card {
+        width: calc(50% - 10px);
+    }
+
+    .mrg-2 {
+        margin-top: 15px;
+    }
+
+}
