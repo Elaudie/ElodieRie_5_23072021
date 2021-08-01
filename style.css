@@ -45,6 +45,7 @@
     width: 100%;
     border-radius: 20px;
     margin-top: 12px;
+    object-fit: cover;
 }
 .text-jumbotron h1 {
     color: #F3E9F2;
@@ -110,6 +111,10 @@ p {
     .container-page {
         max-width: 1250px;
 	    margin: auto;
+    }
+
+    .jumbotron img {
+        height: 500px;
     }
 
     .productCard {
