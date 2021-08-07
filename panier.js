@@ -13,10 +13,6 @@ let messageError = "";
 //Fonction affichant le nombre d'article dans le panier dans le nav.
 getPanierQuantity();
 
-//------
-// ----- AFFICHE TOTAL PRODUIT (*plan test)
-//------
-
 //On stock le prix total dans cette variable
 let total = 0;
 
@@ -34,7 +30,7 @@ let panier = JSON.parse(localStorage.getItem("monPanier"));
 //console.log(panier);
 
 //------
-// ----- SUPPRESSION DU PRODUIT DANS LE PANIER  (*plan test)
+// ----- SUPPRESSION DU PRODUIT DANS LE PANIER
 //------
 
 function suppressionArticle(i) {
@@ -46,7 +42,7 @@ function suppressionArticle(i) {
 }
 
 //------
-// ----- AFFICHAGE DU PANIER UTILISATEUR  (*plan test)
+// ----- AFFICHAGE DU PANIER UTILISATEUR 
 //------
 
 function affichagePanier() {
@@ -96,7 +92,7 @@ const commandeUser = {
 };
 
 //------
-// ----- TEST INPUT DE VALIDATION DU FORMULAIRE  (*plan test)
+// ----- TEST INPUT DE VALIDATION DU FORMULAIRE
 //------
 function testRegex() {
   //input prénom
@@ -141,7 +137,7 @@ function testRegex() {
 }
 
 //------
-// ----- FORMULAIRE ENTIEREMENT VALIDE (*plan test)
+// ----- FORMULAIRE ENTIEREMENT VALIDE
 //------
 
 function sendCommand(event) {
@@ -159,7 +155,7 @@ function sendCommand(event) {
     alertErrors.textContent = messageError;
   } else {
     //------
-    // ----- CREATION DE L'OBJET 'commandeUser' CONTACT + ARRAY PRODUCT  (*plan test)
+    // ----- CREATION DE L'OBJET 'commandeUser' CONTACT + ARRAY PRODUCT
     //------
 
     commandeUser.contact = {
@@ -178,7 +174,7 @@ function sendCommand(event) {
     );
 
     //------
-    // ----- POST DE LA COMMANDE AU "BACKEND" DES DONNÉES RÉCUPÉRÉES DEPUIS LE "LOCALSTORAGE" (*plan test)
+    // ----- POST DE LA COMMANDE AU "BACKEND" DES DONNÉES RÉCUPÉRÉES DEPUIS LE "LOCALSTORAGE" 
     //------
     const optionsFetch = {
       headers: {
@@ -189,7 +185,7 @@ function sendCommand(event) {
     };
 
     //------
-    // ----- TRAITEMENT RÉPONSE OK POUR SE DIRIGER VERS LA PAGE CONFIRMATION  (*plan test)
+    // ----- TRAITEMENT RÉPONSE OK POUR SE DIRIGER VERS LA PAGE CONFIRMATION 
     //------
 
     fetch(getUrl() + "/order", optionsFetch).then(function (response) {
