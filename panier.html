@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Orinounours, Trouvez votre ours en peluche idéal">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+	<!--Twitter cards-->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@Orinoco">
+	<meta name="twitter:description" content="Orinounours, la boutique d'ours en peluche pour les petits et les grands">
+	<meta name="twitter:title" content="Orinounours, trouvez votre ours en peluche personnalisé !">
+	<meta name="twitter:image" content="./backend/images/logo.jpg">
+	<meta name="twitter:image:alt" content="Image de La Chouette Agence">
+	<!--Twitter cards END-->
+
+	<!--lien vers css-->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="./index.js" defer></script>
+	<!--fin lien vers css-->
+
+	<!--Autorise l'indexation dans moteur recherche-->
+	<meta name="robots" content="index, follow">
+	<!--Fin autorisation indexaction dans moteur recherche-->
+
+	<title>Orinounours, ours en peluche fait main</title>
+</head>
+
+<body>
+  		<!--Header-->
+          <header>
+			<div class="container" id="bloc-0">
+				<div class="navbar row">
+					<a class="navbar-brand" href="index.html" title="La page d'accueil">
+						<img src="./backend/images/logo.webp" alt="Logo Orinoco" /></a>
+
+					<div class="internal-link">
+						<a href="./index.html" title="accueil">Accueil</a>
+					</div>
+				</div>
+		</header>
+
+
+
+        <main class="basket flex-block">
+            <div id="basket-resume">
+                <p id="panierVide">Votre panier est vide</p>
+            </div>
+            <div class="form">
+                <form method="post" name="form-panier">
+                    <fieldset>
+                        <legend>Civilité</legend>
+                        <div class="form__group">
+                            <div class="form__group">
+                                <label for="formNom">Nom : </label>
+                                <input type="text" id="formNom" class="form-control input-control" required name="formNom">
+                            </div>
+                            <div class="form__group">
+                                <label for="formPrenom" class="right-inline">Prénom :</label>
+                                <input type="text" id="formPrenom" class="form-control input-control" required name="formPrenom">
+                            </div>
+                        </div>
+                    </fieldset> 
+                    <fieldset>
+                        <legend>Coordonnées</legend>
+                        <div class="form__group">
+                            <label for="formMail">E-mail :</label>
+                            <input type="email" id="formMail" class="form-control input-control" required name="formMail">
+                        </div>
+                        <div class="form__group">
+                            <label for="formAdresse">Adresse :</label>
+                            <input type="text" id="formAdresse" class="form-control input-control" required name="formAdresse">
+                        </div>
+                        <div class="form__group">
+                            <label for="formVille">Ville :</label>
+                            <input type="text" id="formVille" class="form-control input-control" required name="formVille">
+                        </div>
+                    </fieldset> 
+                    <input type="button" value="Je valide mon panier et mes informations" class="btn btn--form" id="envoiPost">
+                </form>
+            </div>
+        </main>
+
+
+        <footer>
+            <div class="navbar navbar-brand">
+                <img src="./backend/images/logo.webp" alt="logo Orinoco">
+                <ul class="internal-link-footer">
+                    <li><a href="#">Mention légales</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+        </body>
+        </html>
