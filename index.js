@@ -1,36 +1,44 @@
-/*Afficher les produits*/
-(async function() {
-    const articles = await getArticles()
-    for (article of articles) {
-        create(product)
-    }
-})()
-
-/* Appeler les produits de l'API du serveur */
-function getArticles () {
-    const URL = "http://localhost:3000/api/teddies"
-    return fetch(URL)
-        .then(function(response) {
-            return response.json()
-        })
-        .catch(function(error) {
-            showErrorMessage()
-        })
-}
-
-/*Création de tuiles produits*/
-function create(product) {
-    const template = document.getElementById("templateArticles")
-    const cloneArticle = document.importNode(template.contentEditable, true)
-
-    cloneArticle.getElementById("articleImage").src = articles.imageURL
-    cloneArticle.getElementById("articleName").textContent = articles.name
-    cloneArticle.getElementById("articlePrice").textContent = (article.price/100).toLocaleString("fr-FR", {style:"curency", currency:"EUR"})
-    cloneArticle.getElementById("articleLink").href = "produits.html?id=" + product._id
-
-    document.getElementsById("article").appenChild(cloneElement)
-}
-
-
-/*Nombre d'articles dans le panier*/
-
+// Main function, auto called at load time
+;(async () => {
+    const products = await getProducts()
+    hydratePage(products)
+  })()
+  
+  async function getProducts() {
+    return fetch(`${apiUrl}/api/teddies`)
+      .then((httpBodyResponse) => httpBodyResponse.json())
+      .then((products) => products)
+      .catch((error) => {
+        alert(
+          "La connexion au serveur n'a pas pu être effectué. Cela est certainement lié à l'endormissement du serveur Heroku, veuillez attendre quelques secondes le temps qu'il sorte de son lit puis réesayez"
+        )
+      })
+  }
+  
+  function hydratePage(products) {
+    // Remove loading boxes
+    document.getElementById('productsList').innerHTML = ''
+  
+    // Loop over all products and displays them
+    products.forEach((product) => {
+      displayProduct(product)
+    })
+  }
+  
+  function displayProduct(product) {
+    // Get template
+    const templateElt = document.getElementById('product')
+  
+    // Clone template
+    const cloneElt = document.importNode(templateElt.content, true)
+  
+    // Hydrate template
+    cloneElt.getElementById('productImage').src = product.imageUrl
+    cloneElt.getElementById('productName').textContent = product.name
+    cloneElt.getElementById('productPrice').textContent = `${product.price / 100}.00 €`
+    cloneElt.getElementById('productDescription').textContent = product.description
+    cloneElt.getElementById('productLink').href = `/products.html?id=${product._id}`
+  
+    // Display template
+    document.getElementById('productsList').appendChild(cloneElt)
+  }
