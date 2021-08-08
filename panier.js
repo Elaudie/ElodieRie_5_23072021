@@ -1,16 +1,4 @@
-//Récupération des champs
-let nomForm = document.getElementById("Nomform");
-let prenomForm = document.getElementById("Prénom");
-let emailForm = document.getElementById("Email");
-let adresseForm = document.getElementById("Adresse");
-let villeForm = document.getElementById("Ville");
-let codePostalForm = document.getElementById("Codepostal");
-let alertErrors = document.querySelector(".errors");
-let divAlert = document.querySelector(".alert.alert-danger");
-let inputError = false;
-let messageError = "";
 
-//Fonction affichant le nombre d'article dans le panier dans le nav.
 getPanierQuantity();
 
 //On stock le prix total dans cette variable
