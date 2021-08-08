@@ -30,53 +30,43 @@
 <body>
 	<div class="container mx-auto px-4 py-8">
 		<!-- HEADER -->
-		<header class="flex justify-between items-center rounded-lg w-full bg-oniPink py-2 px-6">
-		  <a href="/"><img class="h-20 bg-oniPink" src="./backend/images/logo.webp" alt="Orinico"></a>
-		  <nav class="flex">
-			<ul class="list-none font-semibold">
-			  <li>
-				<a class="px-4 py-4" href="./panier.html">Panier</a>
-			  </li>
-			</ul>
-		  </nav>
+		<header>
+			<div class="container" id="bloc-0">
+				<div class="navbar row">
+					<a class="navbar-brand" href="index.html" title="La page d'accueil">
+						<img src="../backend/images/logo.webp" alt="Logo Orinoco" /></a>
+					<div class="internal-link">
+						<a href="panier.html" title="panier">Panier</a>
+					</div>
+				</div>
+			</div>
 		</header>
+
 		<!-- HEADER -->
 	
-		<!-- PRODUCT CONTAINER & LOADING BOXES -->
-		<ul id="productsList" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
-		  <div class="bg-oniPink animate-pulse h-80"></div>
-		  <div class="bg-oniPink animate-pulse h-80"></div>
-		  <div class="bg-oniPink animate-pulse h-80"></div>
-		  <div class="bg-oniPink animate-pulse h-80"></div>
-		  <div class="bg-oniPink animate-pulse h-80"></div>
-		  <div class="bg-oniPink animate-pulse h-80"></div>
-		</ul>
-		<!-- PRODUCT CONTAINER & LOADING BOXES -->
-	  </div>
-	
-	  <!-- PRODUCT TEMPLATE -->
-	  <template id="product">
-		<li class="list-none bg-oniPink rounded-md p-4 transition duration-200 transform hover:scale-102">
-		  <a id="productLink" href="">
-			<figure>
-			  <img id="productImage" class="rounded h-64 w-full object-cover" src="" alt="">
-			  <figcaption class="pt-4">
-				<div class="flex items-center mb-2">
-				  <h2 id="productName" class="font-bold "></h2>
-				  <div class="flex-grow"></div>
-				  <span id="productPrice" class="text-sm font-bold bg-white px-2 py-1 rounded"></span>
+		<!--Présentation - Bloc 1-->
+		<div class="conteneur" id ="bloc-1">
+			<section id="présentation">
+				<div class="row">
+					<div class= "col">
+						<div class="jumbotron">
+							<img src=" ./backend/images/home.jpg" alt="Présentation Orinounours">
+							<div class="text-jumbotron col-sm-12">
+								<h1>ORINOUNOURS </h1>
+								<h2>Personnalisez votre ours en peluche entièrement fait main ! </h2>
+							</div>
+						</div>
+					</div>
 				</div>
-				<p id="productDescription" class="text-black text-opacity-80 text-sm text-justify"></p>
-			  </figcaption>
-			</figure>
-		  </a>
-		</li>
-	  </template>
-	  <!-- PRODUCT TEMPLATE -->
-	</body>
-	</html>
+			</section>
 
-			<!--Footer-->
+		<!--Produits-->
+
+		<h2>Produits</h2>
+			<div id="articles"></div>
+
+
+		<!--Footer-->
 			<footer>
 				<div class="navbar navbar-brand">
 					<img src="./backend/images/logo.webp" alt="logo Orinoco">
@@ -86,8 +76,6 @@
 					</ul>
 				</div>
 			</footer>
-	
 		</div>
 	</body>
-
-	</html>
+</html>

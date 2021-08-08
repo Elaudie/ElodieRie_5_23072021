@@ -29,10 +29,7 @@ if (localStorage.getItem("monPanier")) {
 let panier = JSON.parse(localStorage.getItem("monPanier"));
 //console.log(panier);
 
-//------
 // ----- SUPPRESSION DU PRODUIT DANS LE PANIER
-//------
-
 function suppressionArticle(i) {
   console.log("suppression article i :", i);
   panier.splice(i, 1); //suppression --> 1 de l'element i du tableau;
@@ -41,10 +38,7 @@ function suppressionArticle(i) {
   window.location.reload();
 }
 
-//------
 // ----- AFFICHAGE DU PANIER UTILISATEUR 
-//------
-
 function affichagePanier() {
   if (panier.length > 0) {
     document.getElementById("panierVide").remove();
@@ -68,7 +62,6 @@ function affichagePanier() {
     tableauSection.innerHTML = listOfBag;
 
     /*Création de la ligne du bas du tableau affichant le prix total de la commande*/
-
     JSON.parse(localStorage.getItem("monPanier")).forEach((specArticle) => {
       total += specArticle.price / 100;
     });
@@ -81,9 +74,8 @@ function affichagePanier() {
 }
 affichagePanier();
 
-//------
+
 // ----- FORMULAIRE
-//------
 
 //Création de l'objet à envoyer, regroupant le formulaire et les articles. Sera utile pour la page confirmation.
 const commandeUser = {
@@ -91,9 +83,7 @@ const commandeUser = {
   products: [],
 };
 
-//------
 // ----- TEST INPUT DE VALIDATION DU FORMULAIRE
-//------
 function testRegex() {
   //input prénom
   console.log(inputRegex(prenomForm.value));
@@ -136,15 +126,9 @@ function testRegex() {
   }
 }
 
-//------
 // ----- FORMULAIRE ENTIEREMENT VALIDE
-//------
-
 function sendCommand(event) {
   event.preventDefault();
-
-  //on appel la fonction testRegex
-  testRegex();
 
   //Avant d'envoyer un formulaire, vérification que le panier n'est pas vide et que le formulaire est true.
   if (panier.length == 0) {
@@ -154,10 +138,8 @@ function sendCommand(event) {
     divAlert.style.display = "block";
     alertErrors.textContent = messageError;
   } else {
-    //------
+   
     // ----- CREATION DE L'OBJET 'commandeUser' CONTACT + ARRAY PRODUCT
-    //------
-
     commandeUser.contact = {
       firstName: prenomForm.value,
       lastName: nomForm.value,
@@ -173,10 +155,8 @@ function sendCommand(event) {
       commandeUser.products.push(articlePanier._id)
     );
 
-    //------
     // ----- POST DE LA COMMANDE AU "BACKEND" DES DONNÉES RÉCUPÉRÉES DEPUIS LE "LOCALSTORAGE" 
-    //------
-    const optionsFetch = {
+       const optionsFetch = {
       headers: {
         "Content-Type": "application/json",
       },
@@ -184,10 +164,8 @@ function sendCommand(event) {
       body: JSON.stringify(commandeUser),
     };
 
-    //------
+  
     // ----- TRAITEMENT RÉPONSE OK POUR SE DIRIGER VERS LA PAGE CONFIRMATION 
-    //------
-
     fetch(getUrl() + "/order", optionsFetch).then(function (response) {
       response.json().then(function (resOrder) {
         console.log(resOrder);
