@@ -8,8 +8,11 @@
 .navbar, .productCard {
     background-color: rgb(243, 233, 241);
     display: flex;
-    justify-content: space-between;
     border-radius: 20px;
+}
+
+.navbar {
+    justify-content: space-between;
 }
 
 .internal-link {
@@ -94,6 +97,7 @@
 
 .productStory {
     padding: 0 10px;
+    margin-top: 15px;
 }
 
 .productDescription {
