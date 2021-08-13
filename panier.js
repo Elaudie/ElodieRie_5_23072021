@@ -31,7 +31,7 @@ function affichagePanier() {
   if (panier.length > 0) {
     document.getElementById("panierVide").remove();
 
-    /*Nous allons présenter le panier à l'utilisateut sous forme de tableau que nous plaçons dans la div "Sectionpanier"*/
+    /*Nous allons présenter le panier à l'utilisateur sous forme de tableau que nous plaçons dans la div "Sectionpanier"*/
     let tableauSection = document.querySelector(".Rowsarticle");
 
     let listOfBag = "";
