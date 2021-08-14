@@ -12,7 +12,7 @@ fetch('http://localhost:3000/api/teddies')
           ${articles.name}
         </h1> 
         <div class="productPrice">
-          ${articles.price}
+          ${articles.price * 0.01}€
         </div>
        </div>
        <div class="productDescription">
