@@ -4,7 +4,7 @@ fetch('http://localhost:3000/api/teddies')
     const articlesContainer = document.getElementById('articles');
     for (let articles of data) {
       articlesContainer.innerHTML += 
-      `<a href="${articles._id}" class="productCard">
+      `<a href="produit.html?id=${articles._id}" class="productCard">
       <img class="productImage" src="${articles.imageUrl}"> 
       <div class="productStory">
       <div class="namePrice">
