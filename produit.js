@@ -3,21 +3,20 @@
    .then(data => {
      const articlesContainer = document.getElementById('product');
      
-// const articles = data; (remplacer articles par data dans la suite du code)
        articlesContainer.innerHTML += 
-       `<a href="${articles._id}" class="productCard">
-       <img class="productImage" src="${articles.imageUrl}"> 
+       `<a href="${data._id}" class="productCard">
+       <img class="productImage" src="${data.imageUrl}"> 
        <div class="productStory">
        <div class="namePrice">
          <h1 class="productName">
-           ${articles.name}
+           ${data.name}
          </h1> 
          <div class="productPrice">
-           ${articles.price * 0.01}€
+           ${data.price * 0.01}€
          </div>
         </div>
         <div class="productDescription">
-       <br> ${articles.description}<br></div></div></a>;
+       <br> ${data.description}<br></div></div></a>;
        <button id="button" onClick=${clickHandler(data)}></button>`;
   })
 };
