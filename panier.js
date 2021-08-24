@@ -1,5 +1,5 @@
 
-getPanierQuantity();
+//getPanierQuantity();
 
 //On stock le prix total dans cette variable
 let total = 0;
@@ -32,14 +32,14 @@ function affichagePanier() {
     document.getElementById("panierVide").remove();
 
     /*Nous allons présenter le panier à l'utilisateur sous forme de tableau que nous plaçons dans la div "Sectionpanier"*/
-    let tableauSection = document.querySelector(".Rowsarticle");
+    let tableauSection = document.getElementById("basket-resume");
 
     let listOfBag = "";
     /*On crée l'affichage de la liste des produits proposés qui sera présente sur l'index*/
     panier.map((article, index) => {
       listOfBag += `
 <tr>
-<td ><img id="articleImage" src="${article.imgUrl}"></td>
+<td ><img id="articleImage" src="${article.imageUrl}"></td>
 <td>${article.name}</td>
 <td>${article.lense}</td>
 <td>${article.quantity}</td>
@@ -55,7 +55,7 @@ function affichagePanier() {
     });
 
     sessionStorage.setItem("totalPanier", total);
-    tableauFooterPrixTotal = document.querySelector(".tableauFooterLigne");
+    tableauFooterPrixTotal = document.getElementById("tableautotal");
 
     tableauFooterPrixTotal.textContent = "Prix total: " + total + " euros";
   }

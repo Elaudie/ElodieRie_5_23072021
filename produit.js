@@ -4,7 +4,7 @@
      const articlesContainer = document.getElementById('product');
      
        articlesContainer.innerHTML += 
-       `<a href="${data._id}" class="cardProduct">
+       `<div class="cardProduct">
        <img class="imageProduct" src="${data.imageUrl}"> 
        <div class="storyProduct">
        <div class="priceName">
@@ -17,9 +17,7 @@
         </div>
         <div class="descriptionProduct">
        <br> ${data.description}<br></div>
-       <button id="button" onClick='clickHandler(${JSON.stringify(
-        data
-     )})'>Ajouter au panier</button></div></a>`  
+        </div></div>`  
     })
 }
 
@@ -31,7 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
     getContent(id)
 });
 
-function clickHandler(data) {
+function clickHandler(data, color) {
+
+  let item = {...data, personnalisation: color};
   //Ajouter data au local localStorage
 
   // On stocke window.localStorage dans une variable
