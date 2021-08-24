@@ -16,10 +16,10 @@
          </div>
         </div>
         <div class="descriptionProduct">
-       <br> ${data.description}<br></div></div>
+       <br> ${data.description}<br></div>
        <button id="button" onClick='clickHandler(${JSON.stringify(
         data
-     )})'>Ajouter au panier</button></a>`  
+     )})'>Ajouter au panier</button></div></a>`  
     })
 }
 
