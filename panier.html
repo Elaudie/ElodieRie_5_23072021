@@ -43,15 +43,16 @@
 
 
 
-        <main class="basket flex-block">
+        <main class="basket">
+            <h1 class="titrePanier">Votre panier</h1>
             <div id="basket-resume">
+
                 <p id="panierVide">Votre panier est vide</p>
             </div>
             <div class="form">
                 <form method="post" name="form-panier">
                     <fieldset>
                         <legend>Civilité</legend>
-                        <div class="form__group">
                             <div class="form__group">
                                 <label for="formNom">Nom : </label>
                                 <input type="text" id="formNom" class="form-control input-control" required name="formNom">
@@ -60,7 +61,6 @@
                                 <label for="formPrenom" class="right-inline">Prénom :</label>
                                 <input type="text" id="formPrenom" class="form-control input-control" required name="formPrenom">
                             </div>
-                        </div>
                     </fieldset> 
                     <fieldset>
                         <legend>Coordonnées</legend>
@@ -77,7 +77,7 @@
                             <input type="text" id="formVille" class="form-control input-control" required name="formVille">
                         </div>
                     </fieldset> 
-                    <input type="button" value="Je valide mon panier et mes informations" class="btn btn--form" id="envoiPost">
+                    <input type="button" value="Je valide mon panier et mes informations" class="btn">
                 </form>
             </div>
         </main>

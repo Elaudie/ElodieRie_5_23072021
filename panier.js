@@ -39,11 +39,13 @@ function affichagePanier() {
     panier.map((article, index) => {
       listOfBag += `
 <tr>
-<td ><img id="articleImage" src="${article.imageUrl}"></td>
-<td>${article.name}</td>
-<td>${article.lense}</td>
-<td>${article.quantity}</td>
-<td>${article.price / 100}&#8364;</td>
+<div class="contenantArticle">
+<td><img id="articleImage" src="${article.imageUrl}"></td>
+<div class="contenantDescription">
+<td><div class="articleName">${article.name}</div></td>
+<td><div class="articleColor">${article.color}</div></td>
+<td><div class="articlePrice">${article.price / 100}€</div></td>
+</div></div>
 <td class="fas fa-trash-alt" onclick="suppressionArticle(${index})"></td>
 </tr>`;
     });

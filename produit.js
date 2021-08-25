@@ -26,7 +26,7 @@
         buttonsContainer.innerHTML += `
              <button onClick='clickHandler(${JSON.stringify(
                data
-             )}, ${color})'>Acheter ${color}</button>
+             )}, "${color}")'>Acheter ${color}</button>
         `;
       }
     })
@@ -60,7 +60,7 @@ function clickHandler(data, color) {
   }
 
   // On pousse les données du produit dans le tableau (array)
-  panier.push(data);
+  panier.push(item);
 
   // Dernière étape, on remplace l'élément monPanier du localStorage
   // par la nouvelle version qu'on vient de créer.
