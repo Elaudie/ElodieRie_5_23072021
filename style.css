@@ -112,12 +112,20 @@
     border-radius: 12px;
 }
 
-#button {
-    background-color: rgb(255, 20, 147);
-    border-radius:12px;
+button {
+    height: 45px;
+    width: 100px;
+    background-color: rgb(204, 204, 255);
+    font-weight: bold;   
 }
 
 /* breakpoint */
+@media only screen and (min-width: 768px){
+button {
+    width: 155px;
+}
+}
+
 @media only screen and (min-width: 992px){
 
     .container-page {
@@ -159,16 +167,13 @@
     }
 
     .descriptionProduct {
-        padding-top: 53px;
-        font-size: 29px;
+        padding: 45px 0;
+        font-size: 32px;
     }
-    
-    #button {
-        height: 54px;
-        width: 100%;
-        border-radius: 12px;
-        margin-top: 99px;
-        background-color:rgb(255, 20, 147);
+
+    #boutons {
+        display: flex;
+        justify-content: space-around;
     }
 
     #product {

@@ -17,7 +17,18 @@
         </div>
         <div class="descriptionProduct">
        <br> ${data.description}<br></div>
-        </div></div>`  
+        
+        <div id="boutons"></div></div></div>`
+
+      const buttonsContainer = document.getElementById("boutons");
+
+      for (let color of data.colors) {
+        buttonsContainer.innerHTML += `
+             <button onClick='clickHandler(${JSON.stringify(
+               data
+             )}, ${color})'>Acheter ${color}</button>
+        `;
+      }
     })
 }
 
