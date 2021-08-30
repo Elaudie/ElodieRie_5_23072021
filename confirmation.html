@@ -15,9 +15,10 @@
 	<meta name="twitter:image:alt" content="Image de La Chouette Agence">
 	<!--Twitter cards END-->
 
-	<!--lien vers css-->
+	<!--lien vers css + fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="./index.js" defer></script>
+	<script src="./confirmation.js" defer></script>
 	<!--fin lien vers css-->
 
 	<!--Autorise l'indexation dans moteur recherche-->
@@ -41,92 +42,15 @@
 				</div>
 		 </header>
 
-
-         <main class="Mainpanier">
-            <div class="container" id="panier">
-                <div class="row">
-                    <div class="col">
-                        <h1 class="text-center">Votre panier</h1>
-                    </div>
-                </div>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong class="errors"></strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                <div class="row text-center" id="mainform">
-                    <div class="col" id="leftform">
-
-                        <div id="Sectionpanier">
-                            
-                            <table class="table">
-                                <!-- affichage du panier -->
-                                <thead>
-                                    <tr>
-                                      <th scope="col">#</th>
-                                      <th scope="col">Nom</th>
-                                      <th scope="col">Lense</th>
-                                      <th scope="col">Quantité</th>
-                                      <th scope="col">Prix</th>
-                                      <th scope="col">&#10008;</th>
-                                    </tr>
-
-                                    <tbody class="Rowsarticle">
-                                    </tbody>
-                                    <tfoot>
-                                        <th class="tableauFooterLigne" colspan="4">Prix total: 0 euros</th></tfoot>
-                                  </thead>
-                            </table>
-
-                            <div id="Sectionpanier">
-                                <p id="panierVide">Votre panier est vide</p>
-                            </div>
-                        </div>
-    
-    
-                        <div class="col" id="rightform">
-                            <div id="Sectionformulaire">
-                                <p>IDENTIFICATION</p>
-                                
-                                <form method="post" onsubmit="sendCommand(event)" id="formulaire">
-                                    <fieldset> <!--Identité-->
-                                        <legend>Civilité</legend>
-                                        <div class="row identité">
-                                            <label for="Nomform" class="labelform">Nom : </label>
-                                            <input type="text" id="Nomform" name="Nomform" placeholder="Nom"   required>
-                                        </div>
-                                        <div class="row identité">
-                                            <label for="Prénom" class="labelform">Prénom : </label>
-                                            <input type="text" name="Prénom" id="Prénom" placeholder="Prénom" pattern="[a-zA-Z0-9]+" minlength="" required>
-                                        </div>
-                                        <div class="row identité">
-                                            <label for="Email" class="labelform">E-mail : </label>
-                                            <input type="email" name="Email" id="Email" placeholder="Email" pattern="[^ @]*@[^ @]*" required>
-                                        </div>
-                                    </fieldset>
-                                    <fieldset class="facturation"> <!--Adresse de facturation-->
-                                        <legend>Facturation</legend>
-                                        <div class="row identité">
-                                            <label for="Adresse" class="labelform">Adresse :</label>
-                                            <input type="text" name="Adresse" id="Adresse" placeholder="Adresse" required>
-                                        </div>
-                                        <div class="row identité">
-                                            <label for="Ville" class="labelform">Ville :</label>
-                                            <input type="text" name="Ville" id="Ville" placeholder="Ville" required>
-                                        </div>
-                                        <div class=" row identité">
-                                            <label for="Codepostal" class="labelform">Code postal :</label>
-                                            <input type="number" name="Codepostal" id="Codepostal" placeholder="Code postal" required>
-                                        </div>
-                                    </fieldset>
-                                    <button type="submit" class="btn" id="formbutton">PAYER</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+         <section id="confirmation">
+            <div class="confirmation text-center">
+                <i class="far fa-check-circle"></i>
+                   <h2>Votre commande a bien été prise en compte !</h2>        
+                    <p>Référence de commande : <span id="orderid" class="h6">orderId</span></p>
+                    <p>Montant total : <span id="totalprice" class="h6">totalPrice</span></p><br>
+                    <p>Nous vous remercions pour votre commande.</p>
+            </div>
+        </section>
 
 
          <footer>
