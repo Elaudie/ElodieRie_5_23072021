@@ -43,7 +43,7 @@ function affichagePanier() {
 <td><img id="articleImage" src="${article.imageUrl}"></td>
 <div class="contenantDescription">
 <td><div class="articleName">${article.name}</div></td>
-<td><div class="articleColor">${article.color}</div></td>
+<td><div class="articleColor">${article.personnalisation}</div></td>
 <td><div class="articlePrice">${article.price / 100}€</div></td>
 </div></div>
 <td class="fas fa-trash-alt" onclick="suppressionArticle(${index})"></td>
@@ -73,61 +73,12 @@ const commandeUser = {
   products: [],
 };
 
-// ----- TEST INPUT DE VALIDATION DU FORMULAIRE
-function testRegex() {
-  //input prénom
-  console.log(inputRegex(prenomForm.value));
-  if (!inputRegex(prenomForm.value)) {
-    messageError =
-      "💡️ Votre PRENOM doit contenir au moins 1 lettre sans caractères spéciaux et sans chiffres.";
-    inputError = true;
-  }
-
-  //input nom
-  console.log(inputRegex(nomForm.value));
-  if (!inputRegex(nomForm.value)) {
-    messageError =
-      "💡️ Votre NOM doit contenir au moins 1 lettre sans caractères spéciaux et sans chiffres.";
-    inputError = true;
-  }
-
-  //input ville
-  console.log(inputRegex(villeForm.value));
-  if (!inputRegex(villeForm.value)) {
-    messageError =
-      "💡️ Votre VILLE ne doit pas contenir de caractères spéciaux.";
-    inputError = true;
-  }
-
-  //input mail
-  console.log(inputRegexMail(emailForm.value));
-  if (!inputRegexMail(emailForm.value)) {
-    messageError =
-      "💡️ Votre MAIL ne doit pas contenir de caractères spéciaux et doit contenir @ et un .";
-    inputError = true;
-  }
-
-  //input adresse
-  console.log(inputRegexAdresse(adresseForm.value));
-  if (!inputRegexAdresse(adresseForm.value)) {
-    messageError =
-      "💡️ Votre ADRESSE POSTALE ne doit pas contenir dde  caractères spéciaux.";
-    inputError = true;
-  }
-}
-
 // ----- FORMULAIRE ENTIEREMENT VALIDE
 function sendCommand(event) {
-  event.preventDefault();
-
-  //Avant d'envoyer un formulaire, vérification que le panier n'est pas vide et que le formulaire est true.
-  if (panier.length == 0) {
-    divAlert.style.display = "block";
-    alertErrors.textContent = "💡️ Votre panier est vide";
-  } else if (inputError) {
-    divAlert.style.display = "block";
-    alertErrors.textContent = messageError;
-  } else {
+  const prenomForm = document.getElementById('formPrenom')
+  const nomForm = document.getElementById('formNom')
+  const adresseForm = document.getElementById('formAdress')
+  const emailForm = document.getElementById('formMail')
    
     // ----- CREATION DE L'OBJET 'commandeUser' CONTACT + ARRAY PRODUCT
     commandeUser.contact = {
@@ -156,7 +107,7 @@ function sendCommand(event) {
 
   
     // ----- TRAITEMENT RÉPONSE OK POUR SE DIRIGER VERS LA PAGE CONFIRMATION 
-    fetch(getUrl() + "/order", optionsFetch).then(function (response) {
+    fetch("http://localhost:3000/api/teddies/order", optionsFetch).then(function (response) {
       response.json().then(function (resOrder) {
         console.log(resOrder);
         localStorage.setItem("resOrder", JSON.stringify(resOrder));
@@ -164,5 +115,4 @@ function sendCommand(event) {
       });
     });
   }
-}
 localStorage.clear();
