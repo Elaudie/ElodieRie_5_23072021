@@ -1,68 +1,91 @@
-
-//getPanierQuantity();
-
-//On stock le prix total dans cette variable
-let total = 0;
-
-//Création du panier utilisateur si besoin
-if (localStorage.getItem("monPanier")) {
-  console.log("Panier OK");
-} else {
-  console.log("Création du panier");
-  let init = [];
-  localStorage.setItem("monPanier", JSON.stringify(init));
-}
-
 //On stock le panier dans cette variable
 let panier = JSON.parse(localStorage.getItem("monPanier"));
 //console.log(panier);
 
-// ----- SUPPRESSION DU PRODUIT DANS LE PANIER
-function suppressionArticle(i) {
-  console.log("suppression article i :", i);
-  panier.splice(i, 1); //suppression --> 1 de l'element i du tableau;
-  localStorage.clear(); //on vide le storage avant de le mettre à jour;
-  localStorage.setItem("monPanier", JSON.stringify(panier)); //maj du panier sans l'élément i;
-  window.location.reload();
-}
+// //Création du panier utilisateur si besoin
+// if (localStorage.getItem("monPanier")) {
+//   console.log("Panier OK");
+// } else {
+//   console.log("Création du panier");
+//   let init = [];
+//   localStorage.setItem("monPanier", JSON.stringify(init));
+// }
+
+
+// // ----- SUPPRESSION DU PRODUIT DANS LE PANIER
+// function suppressionArticle(i) {
+//   console.log("suppression article i :", i);
+//   panier.splice(i, 1); //suppression --> 1 de l'element i du tableau;
+//   localStorage.clear(); //on vide le storage avant de le mettre à jour;
+//   localStorage.setItem("monPanier", JSON.stringify(panier)); //maj du panier sans l'élément i;
+//   window.location.reload();
+// }
+
+/*Nous allons présenter le panier à l'utilisateur sous forme de tableau que nous plaçons dans la div "Sectionpanier"*/
+let tableauSection = document.getElementById("basket-resume");
 
 // ----- AFFICHAGE DU PANIER UTILISATEUR 
 function affichagePanier() {
   if (panier.length > 0) {
     document.getElementById("panierVide").remove();
 
-    /*Nous allons présenter le panier à l'utilisateur sous forme de tableau que nous plaçons dans la div "Sectionpanier"*/
-    let tableauSection = document.getElementById("basket-resume");
-
     let listOfBag = "";
     /*On crée l'affichage de la liste des produits proposés qui sera présente sur l'index*/
     panier.map((article, index) => {
       listOfBag += `
-<tr>
-<div class="contenantArticle">
-<td><img id="articleImage" src="${article.imageUrl}"></td>
-<div class="contenantDescription">
-<td><div class="articleName">${article.name}</div></td>
-<td><div class="articleColor">${article.personnalisation}</div></td>
-<td><div class="articlePrice">${article.price / 100}€</div></td>
-</div></div>
-<td class="fas fa-trash-alt" onclick="suppressionArticle(${index})"></td>
-</tr>`;
-    });
-    tableauSection.innerHTML = listOfBag;
-
-    /*Création de la ligne du bas du tableau affichant le prix total de la commande*/
-    JSON.parse(localStorage.getItem("monPanier")).forEach((specArticle) => {
-      total += specArticle.price / 100;
-    });
-
-    sessionStorage.setItem("totalPanier", total);
-    tableauFooterPrixTotal = document.getElementById("tableautotal");
-
-    tableauFooterPrixTotal.textContent = "Prix total: " + total + " euros";
+    <tr>
+    <div class="contenantArticle">
+    <td><img id="articleImage" src="${article.imageUrl}"></td>
+    <div class="contenantDescription">
+    <td><div class="articleName">${article.name}</div></td>
+    <td><div class="articleColor">${article.personnalisation}</div></td>
+    <td><div class="articlePrice">${article.price / 100}€</div></td>
+    </div></div>
+    <button type="button" id="supprimer">Supprimer</button>
+    </tr>`; 
+        });
+        tableauSection.innerHTML = listOfBag;
   }
-}
-affichagePanier();
+    // Boutton effacer
+    let btnDelete = document.querySelectorAll("#supprimer");
+    
+    // boucle pour supprimer le produit choisi
+    for (let i = 0; i < btnDelete.length; i++) {
+      btnDelete[i].addEventListener("click", (event) => {
+        event.preventDefault();
+        //Déclaration de la variable selectID afin de selectionner l'ID du produit
+        let selectID = panier[i]._id;
+
+        //création d'un nouveau tableau avec la méthode filter
+        panier = panier.filter( elementId => elementId._id !== selectID);
+        localStorage.setItem("monPanier", JSON.stringify(panier));
+        
+        //actualisation de la page après suppression
+        alert("Article supprimé du panier")
+        window.location.reload();
+      })
+    }
+
+    //On stock le prix total dans cette variable
+  let total = [];
+  //Création d'une boucle for afin de regrouper les montants
+  for (let i = 0; i < panier.length; i++) {
+    let totalPrix = panier[i].price;
+    total.push(totalPrix);}
+
+  //Addition des montants 
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  const totalFinal = total.reduce(reducer, 0);
+
+  // affichage Prix
+  const affichage = `<div class="affichage">
+  <p>Total de la commande : ${totalFinal/100}€</p>
+                      </div>`
+  // insertion HTML du montant total
+  tableauSection.insertAdjacentHTML("beforeend", affichage);
+
+ }
+  affichagePanier();
 
 
 // ----- FORMULAIRE
@@ -115,4 +138,4 @@ function sendCommand(event) {
       });
     });
   }
-localStorage.clear();
+// localStorage.clear();
