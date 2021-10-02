@@ -69,3 +69,4 @@ function clickHandler(data, color) {
   localStorage.setItem("monPanier", JSON.stringify(panier));
 }
 
+

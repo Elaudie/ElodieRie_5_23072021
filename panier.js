@@ -1,25 +1,5 @@
 //On stock le panier dans cette variable
 let panier = JSON.parse(localStorage.getItem("monPanier"));
-//console.log(panier);
-
-// //Création du panier utilisateur si besoin
-// if (localStorage.getItem("monPanier")) {
-//   console.log("Panier OK");
-// } else {
-//   console.log("Création du panier");
-//   let init = [];
-//   localStorage.setItem("monPanier", JSON.stringify(init));
-// }
-
-
-// // ----- SUPPRESSION DU PRODUIT DANS LE PANIER
-// function suppressionArticle(i) {
-//   console.log("suppression article i :", i);
-//   panier.splice(i, 1); //suppression --> 1 de l'element i du tableau;
-//   localStorage.clear(); //on vide le storage avant de le mettre à jour;
-//   localStorage.setItem("monPanier", JSON.stringify(panier)); //maj du panier sans l'élément i;
-//   window.location.reload();
-// }
 
 /*Nous allons présenter le panier à l'utilisateur sous forme de tableau que nous plaçons dans la div "Sectionpanier"*/
 let tableauSection = document.getElementById("basket-resume");
@@ -84,58 +64,83 @@ function affichagePanier() {
   // insertion HTML du montant total
   tableauSection.insertAdjacentHTML("beforeend", affichage);
 
+  localStorage.setItem("totalFinal", totalFinal);
  }
   affichagePanier();
 
-
 // ----- FORMULAIRE
 
-//Création de l'objet à envoyer, regroupant le formulaire et les articles. Sera utile pour la page confirmation.
-const commandeUser = {
-  contact: {},
-  products: [],
-};
-
 // ----- FORMULAIRE ENTIEREMENT VALIDE
-function sendCommand(event) {
-  const prenomForm = document.getElementById('formPrenom')
-  const nomForm = document.getElementById('formNom')
-  const adresseForm = document.getElementById('formAdress')
-  const emailForm = document.getElementById('formMail')
-   
-    // ----- CREATION DE L'OBJET 'commandeUser' CONTACT + ARRAY PRODUCT
-    commandeUser.contact = {
-      firstName: prenomForm.value,
-      lastName: nomForm.value,
-      address: adresseForm.value,
-      city: villeForm.value,
-      email: emailForm.value,
-    };
-    console.log(commandeUser);
-    //console.log(contact);
-    console.log(panier);
-    //Création du tableau des articles
-    panier.forEach((articlePanier) =>
-      commandeUser.products.push(articlePanier._id)
+const prenomForm = document.getElementById('formPrenom');
+const nomForm = document.getElementById('formNom');
+const adresseForm = document.getElementById('formAdresse');
+const emailForm = document.getElementById('formMail');
+const villeForm = document.getElementById('formVille');
+const erreur = document.getElementById('erreur');
+
+const btn = document.querySelector('.btn');
+
+btn.addEventListener("click", (event) => {
+  event.preventDefault();
+  
+  if (
+    !prenomForm.value ||
+    !nomForm.value ||
+    !adresseForm.value ||
+    !emailForm.value ||
+    !villeForm.value //(mettre ou après avoir mis REGEX)
+
+    //Ajouter REGEX ici
+  ) {
+    erreur.innerHTML = "Les champs ne sont pas correctement remplis";
+  } else {
+    let productsOnorico = [];
+    
+      //Création du tableau des articles
+    panier.forEach(articlePanier =>
+      {productsOnorico.push(articlePanier._id)}
     );
 
+    let contactForm = {
+      firstName : prenomForm.value,
+      lastName : nomForm.value,
+      address : adresseForm.value,
+      city : villeForm.value,
+      email : emailForm.value
+      
+    }
+ 
+    localStorage.setItem("contactForm", JSON.stringify(contactForm));
+    //Création de l'objet à envoyer, regroupant le formulaire et les articles. Sera utile pour la page confirmation.
+    let commandeUser = {
+      contact: contactForm,
+      products: productsOnorico
+    };
+  
+
     // ----- POST DE LA COMMANDE AU "BACKEND" DES DONNÉES RÉCUPÉRÉES DEPUIS LE "LOCALSTORAGE" 
-       const optionsFetch = {
+        const optionsFetch = {
       headers: {
         "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify(commandeUser),
-    };
-
+      };
   
-    // ----- TRAITEMENT RÉPONSE OK POUR SE DIRIGER VERS LA PAGE CONFIRMATION 
-    fetch("http://localhost:3000/api/teddies/order", optionsFetch).then(function (response) {
-      response.json().then(function (resOrder) {
-        console.log(resOrder);
-        localStorage.setItem("resOrder", JSON.stringify(resOrder));
+    
+      // ----- TRAITEMENT RÉPONSE OK POUR SE DIRIGER VERS LA PAGE CONFIRMATION 
+      fetch("http://localhost:3000/api/teddies/order", optionsFetch)
+      .then((response) => {return response.json();})
+      .then((r) => {
+        localStorage.setItem("orderId", r.orderId);
         window.location = "./confirmation.html";
-      });
-    });
-  }
-// localStorage.clear();
+      })
+      .catch((error) => {
+        alert("Veuillez nous excuser pour cette erreur: " + error)
+      })
+    }
+
+  })
+
+
+

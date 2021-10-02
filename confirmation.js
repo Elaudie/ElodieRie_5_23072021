@@ -1,14 +1,16 @@
-/* Afficher l'orderId */
 let receivedOrderId = localStorage.getItem('orderId');
-displayOrderId();
+let totalPriceInCart = localStorage.getItem('totalFinal');
+
+/* Afficher l'orderId */
 function displayOrderId() {
     document.getElementById('orderid').innerText = receivedOrderId;
 }
+displayOrderId();
 
 /* Afficher le prix total */
-displayTotalPrice()
 function displayTotalPrice() {
-    let totalPriceInCart = localStorage.getItem('TotalPrice');
-    totalPriceInCart = JSON.parse(totalPriceInCart);
-    document.getElementById('totalprice').textContent = totalPriceInCart.toLocaleString("fr-FR", {style:"currency", currency:"EUR"});
+  document.getElementById('totalprice').innerText = (totalPriceInCart /100) +'€';
 }
+displayTotalPrice();
+
+localStorage.clear();
