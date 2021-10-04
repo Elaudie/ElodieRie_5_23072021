@@ -15,13 +15,13 @@ function affichagePanier() {
       listOfBag += `
     <tr>
     <div class="contenantArticle">
+    <button type="button" id="supprimer">x</button>
     <td><img id="articleImage" src="${article.imageUrl}"></td>
     <div class="contenantDescription">
     <td><div class="articleName">${article.name}</div></td>
     <td><div class="articleColor">${article.personnalisation}</div></td>
     <td><div class="articlePrice">${article.price / 100}€</div></td>
     </div></div>
-    <button type="button" id="supprimer">Supprimer</button>
     </tr>`; 
         });
         tableauSection.innerHTML = listOfBag;

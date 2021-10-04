@@ -112,13 +112,16 @@
     border-radius: 12px;
 }
 
-button {
+#supprimer {
     height: 45px;
-    width: 100px;
-    background-color: rgb(204, 204, 255);
-    font-weight: bold;   
+    width: 59px;
+    margin-top: 42px;
 }
 
+button {
+    background-color: rgb(204, 204, 255);
+    font-weight: bold;
+}
 /* Panier */
 
 .titrePanier {
@@ -171,10 +174,20 @@ button {
     margin-top: 10px;
 }
 
+.confirmation {
+    text-align: center;
+    border: 3px darkviolet dashed;
+    margin-top: 10px;
+}
+
 /* breakpoint */
 @media only screen and (min-width: 768px){
-button {
-    width: 155px;
+
+#supprimer {
+    width: 30px;
+    position: absolute;
+    margin-top: 94px;
+    left: 30px;
 }
 
 #articleImage {
@@ -216,6 +229,11 @@ button {
         flex-direction: row;
     }
     
+    #supprimer {
+        left: 44px;
+        margin-top: 178px;
+    }
+
     .imageProduct {
         height: 100%;
         width: 50%;
