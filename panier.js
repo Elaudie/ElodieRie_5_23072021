@@ -1,7 +1,7 @@
 //On stock le panier dans cette variable
 let panier = JSON.parse(localStorage.getItem("monPanier"));
 
-/*Nous allons présenter le panier à l'utilisateur sous forme de tableau que nous plaçons dans la div "Sectionpanier"*/
+/*Nous allons présenter le panier à l'utilisateur sous forme de tableau que nous plaçons dans la div "basket-resume"*/
 let tableauSection = document.getElementById("basket-resume");
 
 // ----- AFFICHAGE DU PANIER UTILISATEUR 
@@ -82,7 +82,16 @@ const btn = document.querySelector('.btn');
 
 btn.addEventListener("click", (event) => {
   event.preventDefault();
-  
+
+  /* validation de l'input email par l'utilisation d'une expression régulière */
+  const email = inputEmail.value;
+
+  function validateEmail(email) {
+    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return regex.test(String(email).toLowerCase());
+  }
+
   if (
     !prenomForm.value ||
     !nomForm.value ||
@@ -90,7 +99,6 @@ btn.addEventListener("click", (event) => {
     !emailForm.value ||
     !villeForm.value //(mettre ou après avoir mis REGEX)
 
-    //Ajouter REGEX ici
   ) {
     erreur.innerHTML = "Les champs ne sont pas correctement remplis";
   } else {

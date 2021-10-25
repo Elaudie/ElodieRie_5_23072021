@@ -1,3 +1,4 @@
+//Récupération de l'id de la commande et du montant total dans localStorage
 let receivedOrderId = localStorage.getItem('orderId');
 let totalPriceInCart = localStorage.getItem('totalFinal');
 
@@ -13,4 +14,5 @@ function displayTotalPrice() {
 }
 displayTotalPrice();
 
+//Suppression de toutes les clés du localStorage
 localStorage.clear();
