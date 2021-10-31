@@ -84,7 +84,7 @@ btn.addEventListener("click", (event) => {
   event.preventDefault();
 
   /* validation de l'input email par l'utilisation d'une expression régulière */
-  const email = inputEmail.value;
+  const email = emailForm.value;
 
   function validateEmail(email) {
     const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -97,7 +97,8 @@ btn.addEventListener("click", (event) => {
     !nomForm.value ||
     !adresseForm.value ||
     !emailForm.value ||
-    !villeForm.value //(mettre ou après avoir mis REGEX)
+    !villeForm.value ||
+    !validateEmail(email)
 
   ) {
     erreur.innerHTML = "Les champs ne sont pas correctement remplis";
