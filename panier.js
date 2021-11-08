@@ -6,7 +6,12 @@ let tableauSection = document.getElementById("basket-resume");
 
 // ----- AFFICHAGE DU PANIER UTILISATEUR 
 function affichagePanier() {
+  let totalPrice = 0;
+  let totalQuantity = 0;
   if (panier.length > 0) {
+
+
+
     document.getElementById("panierVide").remove();
 
     let listOfBag = "";
@@ -19,12 +24,21 @@ function affichagePanier() {
     <td><img id="articleImage" src="${article.imageUrl}"></td>
     <div class="contenantDescription">
     <td><div class="articleName">${article.name}</div></td>
-    <td><div class="articleColor">${article.personnalisation}</div></td>
-    <td><div class="articlePrice">${article.price / 100}€</div></td>
+    <td><div class="articleColor">${article.color}</div></td>
+    <td><div class="articlePrice">${(article.price / 100) * article.quantity}€</div></td>
+    <td><div>
+    <p>Qté : </p>
+    <input type="number" id="qty" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${article.quantity}" onChange="changeQuantity(event, '${article._id}', '${article.color}')">
+    </div></td>
     </div></div>
-    </tr>`; 
+    </tr>`;
+      totalPrice += article.price * article.quantity;
+      totalQuantity += parseInt(article.quantity);
         });
+
         tableauSection.innerHTML = listOfBag;
+
+
   }
     // Boutton effacer
     let btnDelete = document.querySelectorAll("#supprimer");
@@ -59,7 +73,7 @@ function affichagePanier() {
 
   // affichage Prix
   const affichage = `<div class="affichage">
-  <p>Total de la commande : ${totalFinal/100}€</p>
+  <p>Total de la commande : ${totalPrice/100}€</p>
                       </div>`
   // insertion HTML du montant total
   tableauSection.insertAdjacentHTML("beforeend", affichage);
@@ -67,6 +81,25 @@ function affichagePanier() {
   localStorage.setItem("totalFinal", totalFinal);
  }
   affichagePanier();
+
+function changeQuantity(e, productId, color) {
+
+  const qty = document.getElementById('qty').value;
+
+  if(qty < 1) {
+    alert('Wrong value');
+    window.location.reload();
+    return;
+  }
+  const storage = window.localStorage;
+  const cart = JSON.parse(storage.getItem("monPanier"));
+  const products = cart.map((x) =>
+      x._id === productId && x.color === color ? { ...x, quantity: e.target.value } : x
+  );
+
+  storage.setItem("monPanier", JSON.stringify(products));
+  window.location.reload();
+}
 
 // ----- FORMULAIRE
 
@@ -86,18 +119,52 @@ btn.addEventListener("click", (event) => {
   /* validation de l'input email par l'utilisation d'une expression régulière */
   const email = emailForm.value;
 
-  function validateEmail(email) {
-    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  function validateFirstName(value) {
+    if (value.match(/^([^0-9]*)$/)) {
+      return true;
+    }
 
-    return regex.test(String(email).toLowerCase());
+    return false;
   }
 
+  function validateLastName(value) {
+    if (value.match(/^([^0-9]*)$/)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  function validateAddress(value) {
+    if (value) {
+      return true;
+    }
+    return false;
+  }
+
+  function validateCity(value) {
+    if (value.match(/^([^0-9]*)$/)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  function validateEmail(value) {
+    if (value.match(/\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi)) {
+      return true;
+    }
+
+    return false;
+  }
+
+
+
   if (
-    !prenomForm.value ||
-    !nomForm.value ||
-    !adresseForm.value ||
-    !emailForm.value ||
-    !villeForm.value ||
+    !validateFirstName(prenomForm.value) ||
+    !validateLastName(nomForm.value) ||
+    !validateAddress(adresseForm.value) ||
+    !validateCity(villeForm.value) ||
     !validateEmail(email)
 
   ) {

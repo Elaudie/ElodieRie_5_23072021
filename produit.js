@@ -1,4 +1,4 @@
- function getContent(id) {fetch('http://localhost:3000/api/teddies/' + id)
+function getContent(id) {fetch('http://localhost:3000/api/teddies/' + id)
    .then(response => response.json())
    .then(data => {
      const articlesContainer = document.getElementById('product');
@@ -18,19 +18,23 @@
         <div class="descriptionProduct">
        <br> ${data.description}<br></div>
         
-        <div id="boutons"></div></div></div>`
+        <select id="colors">
+        ${data.colors.map(
+           (color) => `<option value="${color}">${color}</option>`
+       )}
+</select><div>
+                    <input type="number" name="quantity" id="qty" value="1" />
+                    <button id="add-cart" class="border rounded bg-red-500 text-white py-2 px-4">Add to cart</button>
+                </div></div></div>`
 
-      const buttonsContainer = document.getElementById("boutons");
+       document.getElementById("add-cart").addEventListener("click", () => {
+           addToCart(data);
+       });
 
-      for (let color of data.colors) {
-        buttonsContainer.innerHTML += `
-             <button onClick='clickHandler(${JSON.stringify(
-               data
-             )}, "${color}")'>Acheter ${color}</button>
-        `;
-      }
     })
 }
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const queryString = window.location.search;
@@ -40,33 +44,49 @@ document.addEventListener("DOMContentLoaded", () => {
     getContent(id)
 });
 
-function clickHandler(data, color) {
+async function addToCart(item) {
+    const storage = window.localStorage;
 
-  let item = {...data, personnalisation: color};
-  //Ajouter data au local localStorage
+    const quantity = parseInt(document.getElementById("qty").value);
+    const color = document.getElementById("colors").value;
 
-  // On stocke window.localStorage dans une variable
-  // pour l'écrire plus rapidement par la suite
-  const localStorage = window.localStorage;
+    if (!color) {
+        alert("Veuillez renseigner une couleur");
+        return;
+    }
 
-  // On stocke l'élément "monPanier" qui doit se trouver
-  // dans localStorage. On décode la chaîne de caractères
-  // avec JSON.parse
-  let panier = JSON.parse(localStorage.getItem("monPanier"));
+    if (quantity <= 0) {
+        alert("Veuillez renseigner une quantité supérieure à zéro");
+        return;
+    }
 
-  // Si l'élément est nul on initialise un tableau (array) vide
-  if (!panier || !panier.length) {
-    panier = [];
-  }
+    item["quantity"] = quantity;
+    item["color"] = color;
 
-  // On pousse les données du produit dans le tableau (array)
-  panier.push(item);
+    let cart = [];
 
-  // Dernière étape, on remplace l'élément monPanier du localStorage
-  // par la nouvelle version qu'on vient de créer.
-  // Pour stocker dans localStorage il faut transformer l'objet en chaîne de caractères
-  // d'où la fonction JSON.stringify
-  localStorage.setItem("monPanier", JSON.stringify(panier));
+    const storageCart = JSON.parse(storage.getItem("monPanier"));
+
+    if (storageCart && storageCart.length) {
+        cart = JSON.parse(storage.getItem("monPanier"));
+
+        const hasColor = cart.filter(
+            (x) => x._id === item._id && x.color === color
+        );
+        console.log(cart);
+        if (hasColor && hasColor.length) {
+            hasColor[0].quantity += quantity;
+        } else {
+            cart.push(item);
+        }
+
+        storage.setItem("monPanier", JSON.stringify(cart));
+    } else {
+        cart.push(item);
+        storage.setItem("monPanier", JSON.stringify(cart));
+    }
+
+    alert("Ajouté au panier");
 }
 
 

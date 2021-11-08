@@ -194,8 +194,14 @@ button {
     width: 30%
 }
 
+.color {
+    position: absolute;
+    margin-left: 639px;
+    margin-top: -127px;
+}
+
 .contenantDescription {
-    line-height: 10;
+    line-height: 8;
     flex-direction: row;
 }
 }
@@ -260,7 +266,7 @@ button {
     }
 
     .contenantDescription {
-        line-height: 15;
+        line-height: 8;
     }
     
 }
@@ -272,6 +278,6 @@ footer {
 @media only screen and (min-width: 1150px){
 
     .contenantDescription {
-        line-height: 25;
+        line-height: 8;
     }
 }
